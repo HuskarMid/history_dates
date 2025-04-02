@@ -580,7 +580,7 @@ const HistoryCompass = (props: { $data: CompassDataList[], $parentWidth: number 
           <NavigationButton 
             className={`swiper-button-prev ${isBeginning ? 'swiper-button-disabled' : ''}`} 
             onClick={() => {
-              const swiper = (document.querySelector('.swiper') as HTMLElement)?.swiper as SwiperType;
+              const swiper = (document.querySelector('.swiper') as Element & { swiper: SwiperType })?.swiper;
               if (swiper) {
                 swiper.slidePrev();
               }
@@ -591,7 +591,7 @@ const HistoryCompass = (props: { $data: CompassDataList[], $parentWidth: number 
           <NavigationButton 
             className={`swiper-button-next ${isEnd ? 'swiper-button-disabled' : ''}`} 
             onClick={() => {
-              const swiper = (document.querySelector('.swiper') as HTMLElement)?.swiper as SwiperType;
+              const swiper = (document.querySelector('.swiper') as Element & { swiper: SwiperType })?.swiper;
               if (swiper) {
                 swiper.slideNext();
               }
