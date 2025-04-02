@@ -177,7 +177,7 @@ const Year = styled.h1<{ $isMobile?: boolean; $parentWidth: number }>`
 
 const Title = styled.div<{ $isMobile?: boolean }>`
   position: absolute;
-  top: 200px;
+  top: ${props => props.$isMobile ? '150px' : '200px'};
   left: 0px;
   border-left: ${props => props.$isMobile ? 'none' : '5px solid'};
   border-image: ${props => props.$isMobile ? 'none' : 'linear-gradient(to bottom, #5D5FEF, #EF5DA8) 1'};
