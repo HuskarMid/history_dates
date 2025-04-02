@@ -137,7 +137,7 @@ const CircleControls = styled.div<{ $rotation: number }>`
 const YearContainer = styled.div<{ $isMobile?: boolean; $parentWidth: number }>`
   position: absolute;
   width: 100%;
-  left: ${props => props.$isMobile ? '20px' : '0'};
+  left: ${props => props.$isMobile ? '30px' : '0'};
   top: ${props => props.$isMobile ? '37vh' : '45%'};
   transform: ${props => props.$isMobile ? 'translateY(0)' : 'translateY(-50%)'};
   display: flex;
@@ -156,7 +156,8 @@ const Year = styled.h1<{ $isMobile?: boolean; $parentWidth: number }>`
   cursor: default;
   color: ${colors.pink};
   font-size: ${props => {
-    if (props.$parentWidth <= 450) return '60px';
+    if (props.$parentWidth <= 410) return '60px';
+    if (props.$parentWidth <= 450) return '70px';
     if (props.$parentWidth <= 550) return '90px';
     if (props.$parentWidth <= 650) return '115px';
     if (props.$parentWidth <= 700) return '130px';
@@ -320,7 +321,7 @@ const NavigationButton = styled.div`
 
 const SliderContainer = styled.div<{ $isMobile?: boolean; $opacity: number }>`
   position: absolute;
-  bottom: ${props => props.$isMobile ? '20vh' : '5vh'};
+  bottom: ${props => props.$isMobile ? '19vh' : '5vh'};
   left: ${props => props.$isMobile ? '40px' : '80px'};
   width: ${props => props.$isMobile ? 'calc(100% - 80px)' : 'calc(100% - 160px)'};
   opacity: ${props => props.$opacity};
@@ -369,13 +370,17 @@ const Date = styled.div<{ $isMobile?: boolean }>`
   color: ${colors.secondBlue};
   font-size: ${props => props.$isMobile ? '30px' : '25px'};
   font-weight: 400;
-  margin-bottom: 15px;
+  margin-bottom: ${props => props.$isMobile ? '0px' : '15px'};
   font-family: ${bebasNeue.style.fontFamily};
 `;
 
-const Description = styled.div<{ $isMobile?: boolean }>`
+const Description = styled.div<{ $isMobile?: boolean; $parentWidth: number }>`
   color: ${colors.main};
-  font-size: ${props => props.$isMobile ? '23px' : '20px'};
+  font-size: ${props => {
+    if (props.$parentWidth <= 450) return '15px';
+    if (props.$parentWidth <= 550) return '17px';
+    return props.$isMobile ? '18px' : '20px';
+  }};
   line-height: 1.5;
   width: 70%;
 `;
@@ -566,7 +571,7 @@ const HistoryCompass = (props: { $data: CompassDataList[], $parentWidth: number 
             <SwiperSlide key={index}>
               <Slide>
                 <Date $isMobile={isMobile}>{item.date}</Date>
-                <Description $isMobile={isMobile}>{item.description}</Description>
+                <Description $parentWidth={parentWidth} $isMobile={isMobile}>{item.description}</Description>
               </Slide>
             </SwiperSlide>
           ))}
