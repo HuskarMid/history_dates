@@ -5,4 +5,6 @@
 <hr/>
 <h4>Запуск проекта:</h4>
 
-`npm run dev
+```bash
+npm run dev
+```
