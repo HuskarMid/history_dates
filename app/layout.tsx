@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PT_Sans, Bebas_Neue } from "next/font/google";
+import { PT_Sans } from "next/font/google";
 import "./globals.css";
 import StyledComponentsRegistry from "./lib/registry";
 const ptSans = PT_Sans({
