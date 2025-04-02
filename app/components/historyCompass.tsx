@@ -194,7 +194,7 @@ const PageControls = styled.div<{ $isMobile?: boolean }>`
   align-items: center;
   width: ${props => props.$isMobile ? 'calc(100% - 80px)' : '200px'};
   position: absolute;
-  bottom: ${props => props.$isMobile ? '3vh' : '26vh'};
+  bottom: ${props => props.$isMobile ? '6vh' : '26vh'};
   left: ${props => props.$isMobile ? '40px' : '80px'};
   gap: ${props => props.$isMobile ? '16px' : '20px'};
 
@@ -318,7 +318,7 @@ const NavigationButton = styled.div`
 
 const SliderContainer = styled.div<{ $isMobile?: boolean; $opacity: number }>`
   position: absolute;
-  bottom: ${props => props.$isMobile ? '26vh' : '5vh'};
+  bottom: ${props => props.$isMobile ? '20vh' : '5vh'};
   left: ${props => props.$isMobile ? '40px' : '80px'};
   width: ${props => props.$isMobile ? 'calc(100% - 80px)' : 'calc(100% - 160px)'};
   opacity: ${props => props.$opacity};
@@ -398,7 +398,7 @@ const ButtonTitle = styled.div<{ $isVisible: boolean }>`
 
 const PaginationContainer = styled.div`
   position: absolute;
-  bottom: 52px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -414,7 +414,7 @@ const PaginationContainer = styled.div`
     height: 12px;
     background: ${colors.main};
     opacity: 0.4;
-    margin: 0 10px !important;
+    margin: 0 7px !important;
   }
 
   .swiper-pagination-bullet-active {
