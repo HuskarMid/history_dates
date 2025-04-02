@@ -143,6 +143,7 @@ const YearContainer = styled.div<{ $isMobile?: boolean; $parentWidth: number }>`
   display: flex;
   justify-content: ${props => props.$isMobile ? 'start' : 'center'};
   gap: ${props => {
+    if (props.$parentWidth <= 580) return '20px';
     if (props.$parentWidth <= 680) return '40px';
     if (props.$parentWidth <= 960) return '50px';
     if (props.$parentWidth <= 1130) return '100px';
@@ -155,6 +156,7 @@ const Year = styled.h1<{ $isMobile?: boolean; $parentWidth: number }>`
   cursor: default;
   color: ${colors.pink};
   font-size: ${props => {
+    if (props.$parentWidth <= 450) return '60px';
     if (props.$parentWidth <= 550) return '90px';
     if (props.$parentWidth <= 650) return '115px';
     if (props.$parentWidth <= 700) return '130px';
