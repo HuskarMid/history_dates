@@ -1,95 +1,221 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import { useEffect, useState, useRef } from 'react';
+import HistoryCompass from "./components/historyCompass";
+
+
+const data = [
+  {
+    id: 1,
+    year: '1981',
+    title: 'Наука',
+    dates: [
+      {
+        date: '1981', 
+        description: '"Кто подставил кролика Роджера?"/Who framed Roger Rabbit?, США (реж. Роберт Земекис)',
+      },
+      {
+        date: '1982', 
+        description: '"Назад в будущее 2"/Back to the Future Part II, США (реж. Роберт Земекис)',
+      },
+      {
+        date: '1983', 
+        description: '"Миллионы долларов в час"/The Million Dollar Man, США (реж. Джон Г. Адамс)',
+      },
+      {
+        date: '1984', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      },
+      {
+        date: '1985', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      },
+      {
+        date: '1986', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      }
+
+    ]
+
+  },
+  {
+    id: 2,
+    year: '1987',
+    title: 'История',
+    dates: [
+      {
+        date: '1987', 
+        description: '"Хищник"/Predator, США (реж. Джон МакТирнан)',
+      },
+      {
+        date: '1988', 
+        description: '"Кто подставил кролика Роджера?"/Who framed Roger Rabbit?, США (реж. Роберт Земекис)',
+      },
+      {
+        date: '1989', 
+        description: '"Назад в будущее 2"/Back to the Future Part II, США (реж. Роберт Земекис)',
+      },
+      {
+        date: '1990', 
+        description: '"Миллионы долларов в час"/The Million Dollar Man, США (реж. Джон Г. Адамс)',
+      },
+      {
+        date: '1991', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      },
+      {
+        date: '1992', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      }
+    ]
+  },
+  {
+    id: 3,
+    year: '1993',
+    title: 'Спорт',
+    dates: [
+      {
+        date: '1993', 
+        description: '"Кто подставил кролика Роджера?"/Who framed Roger Rabbit?, США (реж. Роберт Земекис)',
+      },
+      {
+        date: '1994', 
+        description: '"Назад в будущее 2"/Back to the Future Part II, США (реж. Роберт Земекис)',
+      },
+      {
+        date: '1995', 
+        description: '"Миллионы долларов в час"/The Million Dollar Man, США (реж. Джон Г. Адамс)',
+      },
+      {
+        date: '1996', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      },
+      {
+        date: '1997', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      },
+      {
+        date: '1998', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      }
+
+    ]
+  },
+  {
+    id: 4,
+    year: '1999',
+    title: '',
+    dates: [
+      {
+        date: '1999', 
+        description: '"Хищник"/Predator, США (реж. Джон МакТирнан)',
+      },
+      {
+        date: '2000', 
+        description: '"Кто подставил кролика Роджера?"/Who framed Roger Rabbit?, США (реж. Роберт Земекис)',
+      },
+      {
+        date: '2001', 
+        description: '"Назад в будущее 2"/Back to the Future Part II, США (реж. Роберт Земекис)',
+      },
+      {
+        date: '2002', 
+        description: '"Миллионы долларов в час"/The Million Dollar Man, США (реж. Джон Г. Адамс)',
+      },
+      {
+        date: '2003', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      },
+      {
+        date: '2004', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      }
+
+    ]
+  },
+  {
+    id: 5,
+    year: '2005',
+    dates: [
+      {
+        date: '2005', 
+        description: '"Хищник"/Predator, США (реж. Джон МакТирнан)',
+      },
+      {
+        date: '2006', 
+        description: '"Кто подставил кролика Роджера?"/Who framed Roger Rabbit?, США (реж. Роберт Земекис)',
+      },
+      {
+        date: '2007', 
+        description: '"Назад в будущее 2"/Back to the Future Part II, США (реж. Роберт Земекис)',
+      },
+      {
+        date: '2008', 
+        description: '"Миллионы долларов в час"/The Million Dollar Man, США (реж. Джон Г. Адамс)',
+      },
+      {
+        date: '2009', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      },
+      {
+        date: '2010', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      }
+    ]
+  },
+  {
+    id: 6,
+    year: '2011',
+    title: 'Технологии',
+    dates: [
+      {
+        date: '2011', 
+        description: '"Хищник"/Predator, США (реж. Джон МакТирнан)',
+      },
+      {
+        date: '2012', 
+        description: '"Кто подставил кролика Роджера?"/Who framed Roger Rabbit?, США (реж. Роберт Земекис)',
+      },
+      {
+        date: '2013', 
+        description: '"Назад в будущее 2"/Back to the Future Part II, США (реж. Роберт Земекис)',
+      },
+      {
+        date: '2014', 
+        description: '"Миллионы долларов в час"/The Million Dollar Man, США (реж. Джон Г. Адамс)',
+      },
+      {
+        date: '2015', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      },
+      {
+        date: '2016', 
+        description: '"Стражи Галактики"/Guardians of the Galaxy, США (реж. Джеймс Ганн)',
+      }
+
+    ]
+  },
+]
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  // Для работы компонента нужно передать ему ширину родительского контейнера (padding не будет включаться в ширину)
+  const [parentWidth, setParentWidth] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setParentWidth(containerRef.current.offsetWidth);
+      }
+    };
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
+  // ---
+
+  return (
+    <div ref={containerRef} className="parent-container" style={{width: 'calc(100% - 150px)', height: '100%', float: 'right'}}>
+      <HistoryCompass $data={data} $parentWidth={parentWidth} />
     </div>
-  );
+  )
 }
