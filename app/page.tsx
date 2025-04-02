@@ -214,7 +214,7 @@ export default function Home() {
   // ---
 
   return (
-    <div ref={containerRef} className="parent-container" style={{width: 'calc(100% - 150px)', height: '100%', float: 'right'}}>
+    <div ref={containerRef} className="parent-container" style={{width: 'calc(100% - 50px)', height: '100%', float: 'right'}}>
       <HistoryCompass $data={data} $parentWidth={parentWidth} />
     </div>
   )
